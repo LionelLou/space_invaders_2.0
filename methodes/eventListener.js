@@ -28,7 +28,7 @@ function getKey(event) {
     if (touche == ' ') {   // Création d'un objet laser chaque fois que l'on appuye sur Espace
         
         
-        addLaser(laserXY);d
+        addLaser(laserXY);
     
 
     }
