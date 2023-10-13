@@ -77,7 +77,7 @@ partie debug à gauche :
             console.log("-------------------");
            
   
-partie débuf à droite :
+partie débug à droite :
 
             console.log("-------------------");
             console.log("positionlaser = " + laserX);

@@ -1,3 +1,4 @@
+
 // Fonction pour lancer la partie 
 
 function startNewGame() {
@@ -10,7 +11,7 @@ function startNewGame() {
 
             resetState();
         }
-        reset()
+        reset();
         spaceInvader();
     }
 }

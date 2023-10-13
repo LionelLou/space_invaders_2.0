@@ -4,16 +4,21 @@
 /*-----------------------  Importation des sprites et définition diverses ------------------------------------------*/
 
 
+
+let monsterlist = [];
 let monsterImage = new Image();
-monsterImage.src = "sprites/monster_sprite_sheet.png";
+
+monsterImageList = ["sprites/monsters/monster_sprite_sheet_1.png", "sprites/monsters/monster_sprite_sheet_2.png", 
+                    "sprites/monsters/monster_sprite_sheet_3.png" ]
+
 let monsterWidth = 14;
 let monsterHeight = 12;
 //let monsterCycleLoop = [0, 1];
 
 let monsterFrameCount = 0;
-
 let monsterAnimationLoop = 0;
 
+let monsterSpeed;
 
 /*---------------------  Fonction pour créer les animations des monstres  ------------------------------------------*/
 
@@ -39,7 +44,7 @@ function animateMonsters() {
             monsterAnimationLoop = 0;
             break;
 
-        case 30:
+        case 60:
             monsterAnimationLoop = 1;
             break;
 
@@ -49,7 +54,7 @@ function animateMonsters() {
     
     monsterFrameCount++;
 
-    if (monsterFrameCount == 60) {
+    if (monsterFrameCount == 120) {
         
         monsterAnimationLoop = 0;
         monsterFrameCount = 0;
@@ -75,7 +80,7 @@ function animateMonsters() {
 
                 // boucle pour effacer les sprites des monstres et les afficher un pas plus bas si colision avec un des murs selon X 
 
-                ctx.clearRect(element2.X, element2.Y, monsterWidth + 2, monsterHeight + 2);
+                ctx.clearRect(element2.X , element2.Y , monsterWidth + 2, monsterHeight + 2 );
                 element2.marginX = -element2.marginX;
                 element2.X += element2.marginX;
                 element2.Y -= element2.marginY;
@@ -88,7 +93,7 @@ function animateMonsters() {
 
         } else {
 
-            ctx.clearRect(element.X, element.Y, monsterWidth , monsterHeight );
+            ctx.clearRect(element.X, element.Y, monsterWidth + 2, monsterHeight + 2 );
             element.X += element.marginX;
             drawFrame(monsterImage, monsterAnimationLoop, 0, monsterWidth, monsterHeight, element);
 
@@ -106,19 +111,21 @@ function animateMonsters() {
 function monsterStartUp() {
 
 
-    let stepX = (canvas.width / 6), stepY = (canvas.height / 12) + 2;
+    monsterImage.src = monsterImageList[Math.floor(Math.random() * 3)];
+
+    let stepX = (canvas.width / 6), stepY = (canvas.height / 12) + 5;
 
     monsterXY = [];
 
     for (let i = 1; i <= 5; i++) {
 
-        for (let j = 1; j <= 5; j++) {
+        for (let j = 1; j <= 4; j++) {
 
             monsterXY.push({
 
                 X: Math.round(stepX * i),
                 Y: Math.round(stepY * j),
-                marginX: 0.1,  // vitesse de déplacement selon X
+                marginX: monsterSpeed,  // vitesse de déplacement selon X
                 marginY: -5 // vitesse de déplacement selon Y
 
             });
@@ -133,20 +140,20 @@ function monsterStartUp() {
 
     // Test avec 1 monstre pour le débug en cas de soucis : 
 
+
+    // monsterImage.src = monsterImageList[Math.floor(Math.random() * 2)];
+
     // monsterXY = [];
 
     // monsterXY.push({
 
     //     X: Math.round(canvas.width / 6),
     //     Y: Math.round(canvas.height / 12),
-    //     marginX: 100,
+    //     marginX: monsterSpeed,
     //     marginY: -5,
     //     animationState: true
 
     // });
-
-    // window.requestAnimationFrame(animateMonsters);
-
 
     //----------------------- DEBUGEUR NE PAS SUPPRIMER --------------------
 

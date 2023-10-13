@@ -7,7 +7,9 @@
 
 
 let heroImage = new Image();
-heroImage.src = "sprites/hero_sprite_sheet.png";
+
+let heroImageList = ["sprites/HeroSprites/hero_sprite_sheet_1.png","sprites/HeroSprites/hero_sprite_sheet_2.png"]
+
 let heroWidth = 16;
 let heroHeight = 16;
 // let heroCycleLoop = [0, 1, 2, 3];
@@ -61,6 +63,8 @@ function animateHero() {
 
 
 function heroStartUp() {
+
+    heroImage.src = heroImageList[1]; //heroImageList[Math.floor(Math.random() * 2 )];
 
     heroXY = {
         X: Math.round(canvas.width / 2) - heroWidth / 2,
